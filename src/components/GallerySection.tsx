@@ -26,17 +26,17 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" className="py-24 px-6">
+    <section id="gallery" className="py-16 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-12 bg-gold opacity-50" />
-            <span className="text-gold text-xs tracking-[0.4em] uppercase font-sans">Portfolio</span>
-            <div className="h-px w-12 bg-gold opacity-50" />
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
+            <span className="text-gold text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase font-sans">Portfolio</span>
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl text-cream mb-4">The Gallery</h2>
-          <p className="text-cream-dim font-serif-light text-lg italic">Each piece is a window into the soul</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-3 sm:mb-4 px-4">The Gallery</h2>
+          <p className="text-cream-dim font-serif-light text-base sm:text-lg italic px-4">Each piece is a window into the soul</p>
         </div>
 
         {/* Filter Tabs */}

@@ -2,16 +2,16 @@ import artistAtWork from "@/assets/artist-at-work.jpg";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-6 bg-card border-t border-border">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 bg-card border-t border-border">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-12 bg-gold opacity-50" />
-            <span className="text-gold text-xs tracking-[0.4em] uppercase font-sans">The Artist</span>
-            <div className="h-px w-12 bg-gold opacity-50" />
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
+            <span className="text-gold text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase font-sans">The Artist</span>
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl text-cream mb-4">The Hands Behind the Art</h2>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-3 sm:mb-4 px-4">The Hands Behind the Art</h2>
         </div>
 
         {/* Split Screen Layout */}
@@ -23,7 +23,7 @@ const AboutSection = () => {
               <img
                 src={artistAtWork}
                 alt="Tumzart at work in his studio"
-                className="w-full h-[480px] lg:h-[580px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-[400px] sm:h-[480px] lg:h-[580px] object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               {/* Subtle gold vignette at bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-charcoal-deep/80 to-transparent" />

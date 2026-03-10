@@ -26,17 +26,17 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section id="process" className="py-24 px-6">
+    <section id="process" className="py-16 sm:py-24 px-4 sm:px-6">
       <div className="container mx-auto max-w-5xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-12 bg-gold opacity-50" />
-            <span className="text-gold text-xs tracking-[0.4em] uppercase font-sans">The Journey</span>
-            <div className="h-px w-12 bg-gold opacity-50" />
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
+            <span className="text-gold text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase font-sans">The Journey</span>
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl text-cream mb-4">How It Works</h2>
-          <p className="text-cream-dim font-serif-light text-lg italic">From photograph to masterpiece in three simple steps</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-3 sm:mb-4 px-4">How It Works</h2>
+          <p className="text-cream-dim font-serif-light text-base sm:text-lg italic px-4">From photograph to masterpiece in three simple steps</p>
         </div>
 
         {/* Steps */}

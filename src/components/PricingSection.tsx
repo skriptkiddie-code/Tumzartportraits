@@ -31,57 +31,60 @@ const framingOptions = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-24 px-6 bg-charcoal-mid">
+    <section id="pricing" className="py-16 sm:py-24 px-4 sm:px-6 bg-charcoal-mid">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="h-px w-12 bg-gold opacity-50" />
-            <span className="text-gold text-xs tracking-[0.4em] uppercase font-sans">Investment</span>
-            <div className="h-px w-12 bg-gold opacity-50" />
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
+            <span className="text-gold text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase font-sans">Investment</span>
+            <div className="h-px w-8 sm:w-12 bg-gold opacity-50" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl text-cream mb-4">Pricing & Sizes</h2>
-          <p className="text-cream-dim font-serif-light text-lg italic">Transparent pricing for every budget</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-cream mb-3 sm:mb-4 px-4">Pricing & Sizes</h2>
+          <p className="text-cream-dim font-serif-light text-base sm:text-lg italic px-4">Transparent pricing for every budget</p>
         </div>
 
         {/* Price Table */}
-        <div className="overflow-x-auto mb-20 scrollbar-hide">
-          <table className="w-full min-w-[600px]">
-            <thead>
-              <tr className="border-b border-gold/30">
-                <th className="text-left py-4 px-4 text-cream-dim text-xs tracking-widest uppercase font-sans">Size</th>
-                <th className="text-left py-4 px-4 text-cream-dim text-xs tracking-widest uppercase font-sans">Dimensions</th>
-                <th className="text-center py-4 px-4 text-cream-dim text-xs tracking-widest uppercase font-sans">Pencil Sketch</th>
-                <th className="text-center py-4 px-4 text-cream-dim text-xs tracking-widest uppercase font-sans">Pen Drawing</th>
-                <th className="text-center py-4 px-4 text-cream-dim text-xs tracking-widest uppercase font-sans">Digital Portrait</th>
-              </tr>
-            </thead>
-            <tbody>
-              {priceSizes.map((row) => (
-                <tr
-                  key={row.size}
-                  className={`border-b border-border transition-colors hover:bg-charcoal-light/50 ${
-                    row.popular ? "relative" : ""
-                  }`}
-                >
-                  <td className="py-5 px-4">
-                    <div className="flex items-center gap-3">
-                      <span className="font-display text-xl text-cream">{row.size}</span>
-                      {row.popular && (
-                        <span className="bg-gold text-charcoal-deep text-xs px-2 py-0.5 tracking-widest uppercase font-sans font-semibold">
-                          Popular
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="py-5 px-4 text-cream-dim text-sm font-sans">{row.dimensions}</td>
-                  <td className="py-5 px-4 text-center text-gold font-display text-lg">{row.pencil}</td>
-                  <td className="py-5 px-4 text-center text-gold font-display text-lg">{row.pen}</td>
-                  <td className="py-5 px-4 text-center text-gold font-display text-lg">{row.digital}</td>
+        <div className="overflow-x-auto mb-20 scrollbar-hide -mx-4 sm:mx-0">
+          <div className="px-4 sm:px-0">
+            <table className="w-full min-w-[500px]">
+              <thead>
+                <tr className="border-b border-gold/30">
+                  <th className="text-left py-3 sm:py-4 px-2 sm:px-4 text-cream-dim text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-sans">Size</th>
+                  <th className="text-left py-3 sm:py-4 px-2 sm:px-4 text-cream-dim text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-sans hidden sm:table-cell">Dimensions</th>
+                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-cream-dim text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-sans">Pencil</th>
+                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-cream-dim text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-sans">Pen</th>
+                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-cream-dim text-[10px] sm:text-xs tracking-wider sm:tracking-widest uppercase font-sans">Digital</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {priceSizes.map((row) => (
+                  <tr
+                    key={row.size}
+                    className={`border-b border-border transition-colors hover:bg-charcoal-light/50 ${
+                      row.popular ? "relative" : ""
+                    }`}
+                  >
+                    <td className="py-4 sm:py-5 px-2 sm:px-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                        <span className="font-display text-lg sm:text-xl text-cream">{row.size}</span>
+                        <span className="text-cream-dim text-xs font-sans sm:hidden">{row.dimensions}</span>
+                        {row.popular && (
+                          <span className="bg-gold text-charcoal-deep text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 tracking-widest uppercase font-sans font-semibold w-fit">
+                            Popular
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-4 sm:py-5 px-2 sm:px-4 text-cream-dim text-sm font-sans hidden sm:table-cell">{row.dimensions}</td>
+                    <td className="py-4 sm:py-5 px-2 sm:px-4 text-center text-gold font-display text-base sm:text-lg">{row.pencil}</td>
+                    <td className="py-4 sm:py-5 px-2 sm:px-4 text-center text-gold font-display text-base sm:text-lg">{row.pen}</td>
+                    <td className="py-4 sm:py-5 px-2 sm:px-4 text-center text-gold font-display text-base sm:text-lg">{row.digital}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className="mb-16 max-w-3xl mx-auto border border-gold/40 bg-gold/10 px-5 py-4 text-center">
