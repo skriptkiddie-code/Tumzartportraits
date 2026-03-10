@@ -23,12 +23,12 @@ const HeroSection = () => {
           <div className="h-px w-8 sm:w-16 bg-gold opacity-60" />
         </div>
 
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cream mb-4 sm:mb-6 leading-tight animate-fade-up px-2">
+        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cream mb-3 sm:mb-6 leading-tight animate-fade-up px-2">
           Tumzart
           <span className="block italic text-gold font-normal">Portraits</span>
         </h1>
 
-        <p className="font-serif-light text-cream-dim text-lg sm:text-xl md:text-2xl lg:text-3xl italic mb-3 sm:mb-4 animate-fade-up px-2">
+        <p className="font-serif-light text-cream-dim text-base sm:text-xl md:text-2xl lg:text-3xl italic mb-3 sm:mb-4 animate-fade-up px-2">
           Capturing Soul on Paper
         </p>
 
