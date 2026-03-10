@@ -31,11 +31,11 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex flex-col leading-none">
-          <span className="font-display text-xl font-bold text-gold tracking-widest uppercase">Tumzart</span>
-          <span className="text-cream-dim text-xs tracking-[0.3em] uppercase font-sans">Portraits</span>
+          <span className="font-display text-lg sm:text-xl font-bold text-gold tracking-widest uppercase">Tumzart</span>
+          <span className="text-cream-dim text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase font-sans">Portraits</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -72,7 +72,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-charcoal-deep/98 border-t border-border px-6 py-6 flex flex-col gap-5">
+        <div className="md:hidden bg-charcoal-deep/98 border-t border-border px-4 sm:px-6 py-5 sm:py-6 flex flex-col gap-4 sm:gap-5">
           {navItems.map((item) => (
             <NavLink
               key={item.label}
@@ -80,7 +80,7 @@ const Navbar = () => {
               end={item.href === "/"}
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
-                `text-sm tracking-widest uppercase transition-colors duration-300 ${
+                `text-xs sm:text-sm tracking-widest uppercase transition-colors duration-300 ${
                   isActive ? "text-gold" : "text-cream-dim hover:text-gold"
                 }`
               }
@@ -91,7 +91,7 @@ const Navbar = () => {
           <Link
             to="/pricing"
             onClick={() => setMenuOpen(false)}
-            className="px-5 py-2 border border-gold text-gold text-center text-sm tracking-widest uppercase"
+            className="px-4 sm:px-5 py-2 border border-gold text-gold text-center text-xs sm:text-sm tracking-widest uppercase"
           >
             Commission
           </Link>
