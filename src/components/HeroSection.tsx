@@ -29,7 +29,7 @@ const HeroSection = () => {
         </h1>
 
         <p className="font-serif-light text-cream-dim text-base sm:text-xl md:text-2xl lg:text-3xl italic mb-3 sm:mb-4 animate-fade-up px-2">
-          Capturing Soul on Paper
+          Capturing Souls on Paper
         </p>
 
         <p className="text-cream-dim text-xs sm:text-sm md:text-base tracking-widest uppercase font-sans mb-8 sm:mb-12 animate-fade-up px-2">

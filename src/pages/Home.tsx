@@ -18,7 +18,7 @@ const Home = () => {
         <div className="absolute inset-0">
           <img
             src={heroPortrait}
-            alt="Tumzart Portraits - Capturing Soul on Canvas"
+            alt="Tumzart Portraits - Capturing Souls on Paper"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 gradient-hero-overlay" />
@@ -38,7 +38,7 @@ const Home = () => {
           </h1>
 
           <p className="font-serif-light text-cream-dim text-xl md:text-2xl lg:text-3xl italic mb-4 animate-fade-up">
-            Capturing Soul on Canvas
+            Capturing Souls on Paper
           </p>
 
           <p className="text-cream-dim text-sm md:text-base tracking-widest uppercase font-sans mb-12 animate-fade-up">

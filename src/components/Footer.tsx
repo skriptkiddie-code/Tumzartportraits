@@ -62,7 +62,7 @@ const Footer = () => {
             <div className="flex flex-col items-center md:items-start gap-4">
               <Link to="/">
                 <p className="font-display text-xl text-gold tracking-widest uppercase">Tumzart Portraits</p>
-                <p className="text-muted-foreground text-xs tracking-widest uppercase font-sans mt-1">Capturing Soul on Canvas</p>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase font-sans mt-1">Capturing Souls on Paper</p>
               </Link>
 
               <div className="flex items-center gap-4">
