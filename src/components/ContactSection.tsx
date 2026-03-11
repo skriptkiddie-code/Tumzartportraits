@@ -84,31 +84,32 @@ const ContactSection = () => {
 
     try {
       const payload = new FormData();
+      payload.append("access_key", "449f5c01-5caf-4354-adb1-5a44057bcb3b");
       payload.append("name", form.name);
       payload.append("email", form.email);
       payload.append("medium", form.medium);
       payload.append("message", form.message);
-      payload.append("_subject", `New portrait inquiry from ${form.name}`);
+      payload.append("subject", `New portrait inquiry from ${form.name}`);
+      payload.append("from_name", "Tumzart Portraits Contact Form");
       if (referenceImage) {
         payload.append("attachment", referenceImage);
       }
 
-      const response = await fetch("https://formsubmit.co/ajax/e0149b406f26ec525f5dc0952b7fe240", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
         body: payload,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to send inquiry");
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to send inquiry");
       }
 
       setSubmitted(true);
       setForm({ name: "", email: "", medium: "", message: "", company: "" });
       setReferenceImage(null);
-      toast.success("Inquiry sent successfully.");
+      toast.success("Inquiry sent successfully with attachment!");
     } catch (error) {
       setSubmitError("Could not send your inquiry right now. Please try again or contact me directly.");
       toast.error("Inquiry could not be sent. Please try again.");
