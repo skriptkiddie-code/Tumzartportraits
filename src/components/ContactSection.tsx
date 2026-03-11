@@ -55,9 +55,9 @@ const ContactSection = () => {
       return;
     }
 
-    const maxSizeBytes = 10 * 1024 * 1024;
+    const maxSizeBytes = 5 * 1024 * 1024; // 5MB limit for Web3Forms
     if (selected.size > maxSizeBytes) {
-      setSubmitError("Image is too large. Please upload a file under 10MB.");
+      setSubmitError("Image is too large. Please upload a file under 5MB.");
       e.target.value = "";
       return;
     }
@@ -83,6 +83,13 @@ const ContactSection = () => {
     setIsSending(true);
 
     try {
+      // Double-check file size before sending
+      if (referenceImage && referenceImage.size > 5 * 1024 * 1024) {
+        setSubmitError("Image file is too large. Please select a file under 5MB.");
+        setIsSending(false);
+        return;
+      }
+
       const payload = new FormData();
       payload.append("access_key", "449f5c01-5caf-4354-adb1-5a44057bcb3b");
       payload.append("name", form.name);
@@ -110,11 +117,12 @@ const ContactSection = () => {
       setSubmitted(true);
       setForm({ name: "", email: "", medium: "", message: "", company: "" });
       setReferenceImage(null);
-      toast.success("Inquiry sent successfully with attachment!");
-    } catch (error) {
-      setSubmitError("Could not send your inquiry right now. Please try again or contact me directly.");
+      toast.success(referenceImage ? "Inquiry sent successfully with attachment!" : "Inquiry sent successfully!");
+    } catch (error: any) {
+      const errorMessage = error.message || "Could not send your inquiry right now. Please try again or contact me directly.";
+      setSubmitError(errorMessage);
       toast.error("Inquiry could not be sent. Please try again.");
-      console.error(error);
+      console.error("Form submission error:", error);
     } finally {
       setIsSending(false);
     }
@@ -231,7 +239,7 @@ const ContactSection = () => {
                     className="w-full bg-charcoal-light border border-border text-cream px-4 py-3 text-sm font-sans file:mr-4 file:py-2 file:px-3 file:border-0 file:bg-gold file:text-charcoal-deep file:text-xs file:tracking-widest file:uppercase file:font-semibold hover:file:bg-gold-glow"
                   />
                   <p className="mt-2 text-cream-dim text-xs font-sans">
-                    Accepted: JPG, PNG, WEBP up to 10MB.
+                    Accepted: JPG, PNG, WEBP up to 5MB.
                   </p>
                   {referenceImage && (
                     <p className="mt-1 text-gold text-xs font-sans">Selected: {referenceImage.name}</p>
