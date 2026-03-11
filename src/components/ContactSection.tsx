@@ -91,6 +91,7 @@ const ContactSection = () => {
       payload.append("message", form.message);
       payload.append("subject", `New portrait inquiry from ${form.name}`);
       payload.append("from_name", "Tumzart Portraits Contact Form");
+      payload.append("redirect", "false"); // Important for AJAX
       if (referenceImage) {
         payload.append("attachment", referenceImage);
       }
@@ -102,7 +103,7 @@ const ContactSection = () => {
 
       const data = await response.json();
 
-      if (!response.ok || !data.success) {
+      if (!data.success) {
         throw new Error(data.message || "Failed to send inquiry");
       }
 
