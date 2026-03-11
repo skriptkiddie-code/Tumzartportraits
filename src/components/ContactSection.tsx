@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Phone, Mail, MapPin, Smartphone, Building2, Send } from "lucide-react";
 import { toast } from "sonner";
 
@@ -17,53 +17,12 @@ const paymentMethods = [
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", medium: "", message: "", company: "" });
-  const [referenceImage, setReferenceImage] = useState<File | null>(null);
-  const [referencePreview, setReferencePreview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  useEffect(() => {
-    if (!referenceImage) {
-      setReferencePreview("");
-      return;
-    }
-
-    const objectUrl = URL.createObjectURL(referenceImage);
-    setReferencePreview(objectUrl);
-
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
-  }, [referenceImage]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selected = e.target.files?.[0] ?? null;
-
-    if (!selected) {
-      setReferenceImage(null);
-      return;
-    }
-
-    if (!selected.type.startsWith("image/")) {
-      setSubmitError("Please upload an image file only.");
-      e.target.value = "";
-      return;
-    }
-
-    const maxSizeBytes = 5 * 1024 * 1024; // 5MB limit for Web3Forms
-    if (selected.size > maxSizeBytes) {
-      setSubmitError("Image is too large. Please upload a file under 5MB.");
-      e.target.value = "";
-      return;
-    }
-
-    setSubmitError("");
-    setReferenceImage(selected);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -83,13 +42,6 @@ const ContactSection = () => {
     setIsSending(true);
 
     try {
-      // Double-check file size before sending
-      if (referenceImage && referenceImage.size > 5 * 1024 * 1024) {
-        setSubmitError("Image file is too large. Please select a file under 5MB.");
-        setIsSending(false);
-        return;
-      }
-
       const payload = new FormData();
       payload.append("access_key", "449f5c01-5caf-4354-adb1-5a44057bcb3b");
       payload.append("name", form.name);
@@ -98,10 +50,8 @@ const ContactSection = () => {
       payload.append("message", form.message);
       payload.append("subject", `New portrait inquiry from ${form.name}`);
       payload.append("from_name", "Tumzart Portraits Contact Form");
-      payload.append("redirect", "false"); // Important for AJAX
-      if (referenceImage) {
-        payload.append("attachment", referenceImage);
-      }
+      payload.append("redirect", "false");
+      // Note: File attachments removed as they require Web3Forms premium plan
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -116,10 +66,9 @@ const ContactSection = () => {
 
       setSubmitted(true);
       setForm({ name: "", email: "", medium: "", message: "", company: "" });
-      setReferenceImage(null);
-      toast.success(referenceImage ? "Inquiry sent successfully with attachment!" : "Inquiry sent successfully!");
-    } catch (error: any) {
-      const errorMessage = error.message || "Could not send your inquiry right now. Please try again or contact me directly.";
+      toast.success("Inquiry sent successfully!");
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Could not send your inquiry right now. Please try again or contact me directly.";
       setSubmitError(errorMessage);
       toast.error("Inquiry could not be sent. Please try again.");
       console.error("Form submission error:", error);
@@ -223,37 +172,8 @@ const ContactSection = () => {
                     value={form.message}
                     onChange={handleChange}
                     className="w-full bg-charcoal-light border border-border text-cream px-4 py-3 text-sm font-sans placeholder:text-cream-dim/40 focus:outline-none focus:border-gold transition-colors resize-none"
-                    placeholder="Describe your commission (size, number of subjects, occasion, etc.)"
+                    placeholder="Describe your commission (size, number of subjects, occasion, etc.). If you have a reference image, mention it here and we'll request it via email."
                   />
-                </div>
-
-                <div>
-                  <label className="block text-cream-dim text-xs tracking-widest uppercase font-sans mb-2">
-                    Attach Reference Image (Optional)
-                  </label>
-                  <input
-                    type="file"
-                    name="attachment"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="w-full bg-charcoal-light border border-border text-cream px-4 py-3 text-sm font-sans file:mr-4 file:py-2 file:px-3 file:border-0 file:bg-gold file:text-charcoal-deep file:text-xs file:tracking-widest file:uppercase file:font-semibold hover:file:bg-gold-glow"
-                  />
-                  <p className="mt-2 text-cream-dim text-xs font-sans">
-                    Accepted: JPG, PNG, WEBP up to 5MB.
-                  </p>
-                  {referenceImage && (
-                    <p className="mt-1 text-gold text-xs font-sans">Selected: {referenceImage.name}</p>
-                  )}
-                  {referencePreview && (
-                    <div className="mt-3 inline-flex flex-col items-start gap-2">
-                      <p className="text-cream-dim text-xs font-sans">Preview</p>
-                      <img
-                        src={referencePreview}
-                        alt="Reference preview"
-                        className="w-28 h-28 object-cover border border-gold/40 bg-charcoal-light"
-                      />
-                    </div>
-                  )}
                 </div>
 
                 <button
